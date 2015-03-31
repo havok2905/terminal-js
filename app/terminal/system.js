@@ -89,3 +89,40 @@ System.prototype.cat = function(target) {
     return item instanceof File && (item.name + '.' + item.extension) === target;
   })[0].text;
 };
+
+
+/*
+ * Interface for user commands
+ */
+
+System.prototype.exec = function(command, argument) {
+  switch(command) {
+    case 'ls':
+      return this.ls();
+      break;
+    case 'pwd':
+      return this.pwd();
+      break;
+    case 'cd':
+      return this.cd(argument);
+      break;
+    case 'cat':
+      return this.cat(argument);
+      break;
+    default:
+      return false;
+  }
+}
+
+
+/*
+ * Parse user input into commands
+ */
+
+System.prototype.parse = function(input) {
+  commands = input.split(/\| | &&/).map(function(item) {
+    return item.trim().split(' ');
+  });
+
+  return commands;
+};
