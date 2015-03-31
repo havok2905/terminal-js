@@ -1,5 +1,4 @@
-var System,
-    location;
+var System;
 
 System = function(contents) {
   this.tree = new Directory('~', null, null, contents); // Master cached copy of file system
@@ -53,12 +52,20 @@ System.prototype.ls = function() {
 
 
 /*
+ * Check if the given path can take you to a file or directory.
+ * If yes, then return it, otherwise return false.
+ */
+
+System.prototype.traverse = function(target) {
+
+};
+
+
+/*
  * Return your current location in the file system.
  */
 
 System.prototype.pwd = function() {
-  var found = null;
-
   function recurse(current, path) {
     if(current.parent === null) {
       path.push('~');
