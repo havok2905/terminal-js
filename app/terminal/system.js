@@ -2,6 +2,12 @@ var System,
     commands,
     command;
 
+/*
+ * System class maintains working and master versions of the mocked file system
+ * and provides an interface for which to interact with it. It parses input,
+ * executes commands, and maintains files.
+ */
+
 System = function(contents) {
   this.tree = new Directory('~', null, null, contents); // Master cached copy of file system
   this.working = new Directory('~', null, null, contents); // Working directory for reference
@@ -24,6 +30,8 @@ System.prototype.traverse = function(target) {
 
 System.prototype.exec = function(command, argument) {
   switch(command) {
+    case 'help':
+      return Command.commands;
     case 'ls':
       return Command.ls(this.working);
       break;
@@ -43,12 +51,13 @@ System.prototype.exec = function(command, argument) {
     default:
       return false;
   }
-}
+};
 
 
 /*
- * Split the string of commands into an array of components.
- * Generate new Command objects from the list and return them.
+ * Provide an interface for testing the parse function.
+ * This will probably be taken out as more of this simulator
+ * is filled out.
  */
 
 System.prototype.parse = function(input) {
@@ -79,4 +88,4 @@ System.prototype.parse = function(input) {
   command = new Command(null, [], [], null);
 
   return commands;
-};
+}
