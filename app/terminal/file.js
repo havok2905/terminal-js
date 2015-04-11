@@ -6,4 +6,4 @@ var File = function(name, extension, text) {
 
 File.prototype.fullname = function() {
   return this.name + '.' + this.extension;
-}
+};

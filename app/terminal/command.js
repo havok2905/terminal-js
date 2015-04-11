@@ -28,12 +28,12 @@ Command.exists = function(command) {
 
 Command.grep = function(working) {
 
-}
+};
 
 
 Command.help = function() {
   return Command.commands.join(' ');
-}
+};
 
 
 /*

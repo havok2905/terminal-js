@@ -75,7 +75,7 @@ System.prototype.parse = function(input) {
       item = item.substr(1).split('');
       item.forEach(function(flag) {
         command.flags.push(flag);
-      })
+      });
     }
     else if(Command.exists(item)) {
       command.command = item;
