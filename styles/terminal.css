@@ -1,0 +1,28 @@
+body, html, .terminal {
+  background-color: #111111;
+  color: green;
+}
+
+.input {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.input label {
+  float: left;
+  margin-right: 5px; 
+}
+
+.input span {
+    overflow: hidden;
+    display: block;
+}
+
+.input input {
+  width: 100%;
+  color: green;
+  background: none;
+  outline: none;
+  border: none;
+}

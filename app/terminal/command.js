@@ -8,12 +8,14 @@ Command = function(command, flags, arguments, after) {
 };
 
 Command.commands = [
+  'help',
   'ls',
   'cd',
   'grep',
   'cat',
   'pwd'
 ];
+
 
 Command.exists = function(command) {
   return Command.commands.indexOf(command) !== -1 ? true : false;
@@ -29,12 +31,19 @@ Command.grep = function(working) {
 }
 
 
+Command.help = function() {
+  return Command.commands.join(' ');
+}
+
+
 /*
  * Navigate through the file system
  * Only supports single directory navigation currently
  */
 
 Command.cd = function(working, target) {
+  target = target[0];
+
   if(target === '/' || target === '/~') {
     return working.root;
   }
@@ -61,7 +70,7 @@ Command.cd = function(working, target) {
 Command.ls = function(working) {
   return working.contents.map(function(item) {
     return item.fullname();
-  });
+  }).join(' ');
 };
 
 
@@ -80,7 +89,7 @@ Command.pwd = function(working) {
     }
   }
 
-  return recurse(working, []).reverse();
+  return recurse(working, []).reverse().join('/');
 };
 
 
@@ -89,6 +98,8 @@ Command.pwd = function(working) {
  */
 
 Command.cat = function(working, target) {
+  target = target[0];
+
   return working.contents.filter(function(item) {
     return item instanceof File && (item.name + '.' + item.extension) === target;
   })[0].text;

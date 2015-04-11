@@ -5,12 +5,24 @@
     <script src='app/terminal/file.js'></script>
     <script src='app/terminal/directory.js'></script>
     <script src='app/terminal/system.js'></script>
+    <script src='app/terminal/ui.js'></script>
     <script src='app/main.js'></script>
+
+    <link rel='stylesheet' href='styles/reset.css' />
+    <link rel='stylesheet' href='styles/terminal.css' />
   </head>
   <body>
-    <div class='terminal'>
-      <input type='text'/>
-      <button>Submit</button>
+
+    <div class='messages'>
+      <ul id='main-list'>
+        <li>...</li>
+      </ul>
     </div>
+
+    <div class='input'>
+      <label>>></label>
+      <span><input type='text' id='main-input'/></span>
+    </div>
+
   </body>
 </html>

@@ -15,23 +15,29 @@ System = function(contents) {
 
 
 /*
- * Check if the given path can take you to a file or directory.
- * If yes, then return it, otherwise return false.
+ * Handles the running of a stack of commands
  */
 
-System.prototype.traverse = function(target) {
+System.prototype.run = function(commands) {
+  var lastResult;
 
-};
+  for(command in commands) {
+    lastResult = this.exec(commands[command]);
+  }
+
+  console.log(lastResult);
+  return lastResult;
+}
 
 
 /*
  * Interface for user commands
  */
 
-System.prototype.exec = function(command, argument) {
-  switch(command) {
+System.prototype.exec = function(command) {
+  switch(command.command) {
     case 'help':
-      return Command.commands;
+      return Command.help();
     case 'ls':
       return Command.ls(this.working);
       break;
@@ -39,14 +45,14 @@ System.prototype.exec = function(command, argument) {
       return Command.pwd(this.working);
       break;
     case 'cd':
-      this.working = Command.cd(this.working, argument);
+      this.working = Command.cd(this.working, command.arguments, command.flags);
       return this.working;
       break;
     case 'cat':
-      return Command.cat(this.working, argument);
+      return Command.cat(this.working, command.arguments, command.flags);
       break;
     case 'grep':
-      return Command.grep(this.working);
+      return Command.grep(this.working, command.arguments, command.flags);
       break;
     default:
       return false;
