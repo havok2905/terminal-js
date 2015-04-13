@@ -13,7 +13,8 @@ Command.commands = [
   'cd',
   'grep',
   'cat',
-  'pwd'
+  'pwd',
+  'history'
 ];
 
 
@@ -34,6 +35,17 @@ Command.grep = function(working) {
 Command.help = function() {
   return Command.commands.join(' ');
 };
+
+
+/*
+ * Return a list of commands made
+ */
+
+Command.history = function(list) {
+  return list.map(function(item, index) {
+    return index + ' ' + item + '\n';
+  }).join('');
+}
 
 
 /*

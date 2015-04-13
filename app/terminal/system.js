@@ -11,6 +11,7 @@ var System,
 System = function(contents) {
   this.tree = new Directory('~', null, null, contents); // Master cached copy of file system
   this.working = new Directory('~', null, null, contents); // Working directory for reference
+  this.history = [];
 };
 
 
@@ -38,6 +39,8 @@ System.prototype.exec = function(command) {
   switch(command.command) {
     case 'help':
       return Command.help();
+    case 'history':
+      return Command.history(this.history);
     case 'ls':
       return Command.ls(this.working);
       break;

@@ -16,6 +16,7 @@ UI.input.prototype.submitEvent = function(event) {
   var commands, result;
 
   if(event.keyCode === 13) {
+    this.system.history.push(this.input.value);
     commands = this.system.parse(this.input.value);
     result = this.system.run(commands);
     if(typeof result === 'string') {
