@@ -1,3 +1,6 @@
+var System = require('./terminal/system.js');
+var UI = require('./terminal/ui.js');
+
 window.onload = function() {
   var system,
       input;

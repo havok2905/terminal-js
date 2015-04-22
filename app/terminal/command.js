@@ -1,6 +1,7 @@
-var Command;
+var Directory = require('./directory.js');
+var File = require('./file.js');
 
-Command = function(command, flags, arguments, after) {
+var Command = function(command, flags, arguments, after) {
   this.command = command;
   this.flags = flags;
   this.arguments = arguments;
@@ -116,3 +117,5 @@ Command.cat = function(working, target) {
     return item instanceof File && (item.name + '.' + item.extension) === target;
   })[0].text;
 };
+
+module.exports = Command;

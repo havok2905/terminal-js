@@ -1,6 +1,5 @@
-var System,
-    commands,
-    command;
+var Directory = require('./directory.js');
+var Command = require('./command.js');
 
 /*
  * System class maintains working and master versions of the mocked file system
@@ -8,7 +7,7 @@ var System,
  * executes commands, and maintains files.
  */
 
-System = function(contents) {
+var System = function(contents) {
   this.tree = new Directory('~', null, null, contents); // Master cached copy of file system
   this.working = new Directory('~', null, null, contents); // Working directory for reference
   this.history = [];
@@ -70,8 +69,8 @@ System.prototype.exec = function(command) {
  */
 
 System.prototype.parse = function(input) {
-  commands = [];
-  command = new Command(null, [], [], null);
+  var commands = [];
+  var command = new Command(null, [], [], null);
 
   input.split(' ').forEach(function(item) {
     if(item.match(/^-/)) {
@@ -97,4 +96,6 @@ System.prototype.parse = function(input) {
   command = new Command(null, [], [], null);
 
   return commands;
-}
+};
+
+module.exports = System;

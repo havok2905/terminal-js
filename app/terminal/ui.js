@@ -34,3 +34,5 @@ UI.input.prototype.addToScreen = function(input) {
   li.appendChild(liText);
   this.list.appendChild(li);
 };
+
+module.exports = UI;

@@ -1,3 +1,5 @@
+var File = require('./file.js');
+
 var Directory = function(name, parent, root, contents) {
   this.name = name;
   this.parent = parent;
@@ -17,3 +19,5 @@ var Directory = function(name, parent, root, contents) {
 Directory.prototype.fullname = function() {
   return this.name;
 };
+
+module.exports = Directory;
